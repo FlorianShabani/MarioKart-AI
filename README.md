@@ -2,7 +2,7 @@
 MarioKartMNN(!PROJECT INCOMPLETE!)
 (Sorry new to GITHUB)
 
-(The code was meant for my training and for fun, so its not very commented.)
+(The code was meant for my learning and for fun, so its not very commented.)
 
 This is a Mario Kart 2D recreation with agents controlled by a Neural Network. (The Neural Network source code is in the Neural Network repository)
 (The Window is the code used by most of my programs as a library to start my canvas and basic draw() and tick() loops. All the main classes implement the Manger class and then start the Window in the main function)
