@@ -7,7 +7,7 @@ MarioKartMNN(!PROJECT INCOMPLETE!)
 This is a Mario Kart 2D recreation with agents controlled by a Neural Network. (The Neural Network source code is in the Neural Network repository)
 (The Window is the code used by most of my programs as a library to start my canvas and basic draw() and tick() loops. All the main classes implement the Manger class and then start the Window in the main function)
 
-The training is done by (not complete) "genetically" modifying the neural network,with agents who score higher having a more favorable chance of passing their Neural Network "genes".
+The training is done by (its not complete) "genetically" modifying the neural network,with agents who score higher having a more favorable chance of passing their Neural Network "genes".
 
 The agents inform themselvesc by multiple rays in front of them which indicate the distance of nearby walls(in the ray's direction) and also the agents speed is inputed into its first layer of the NN.
 
