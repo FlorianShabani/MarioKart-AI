@@ -1,6 +1,6 @@
 
 MarioKartMNN(!PROJECT INCOMPLETE!)
-(Sorry new to GITHUB)
+
 
 (The code was meant for learning and for fun, so its not very commented.)
 
