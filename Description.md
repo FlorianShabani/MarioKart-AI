@@ -1,4 +1,5 @@
-# MarioKartMNN(!PROJEKCT INCOMPLETE!)
+# MarioKartMNN(!PROJECT INCOMPLETE!)
+(Sorry new to GITHUB)
 
 This is a Mario Kart 2D recreation with agents controlled by a Neural Network. (The Neural Network source code is in the Neural Network repository)
 
