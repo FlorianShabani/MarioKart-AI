@@ -12,5 +12,5 @@ The neural network outputs are : Speed up, do Nothing, Slow down, and Turn right
 
 The Mapper serves to manually create the borders for the .png map images.
 
-![MarioKart](https://user-images.githubusercontent.com/86021222/127756509-3e7de4be-a002-45e4-8bde-c3eba5354b0d.png)
-![Mapper](https://user-images.githubusercontent.com/86021222/127756510-bc6c840b-ef38-4778-9ad5-c95e705a71c0.png)
+![MarioKart](https://user-images.githubusercontent.com/86021222/127756541-5ccb3510-516f-4c66-83ea-259e1701dc91.png)
+![Mapper](https://user-images.githubusercontent.com/86021222/127756549-194fd6af-4208-473f-a5fa-bdeebb9223cd.png)
