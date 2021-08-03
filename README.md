@@ -17,7 +17,7 @@ The Mapper serves to manually create the borders for the .png map images.
 
 All the classes which are implemented from the entity class are used to make the borders for the road( With the mapper ).
 
-If confused by Kart and NKart - Kart is the kart entity, NKart contains the neural network the control the kart.
+(If confused by Kart and NKart - Kart is the kart entity, NKart contains the neural network the control the kart.)
 
 
 
