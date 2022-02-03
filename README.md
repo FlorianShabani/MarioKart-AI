@@ -20,5 +20,5 @@ All the classes which are implemented from the entity class are used to make the
 (If confused by Kart and NKart - Kart is the kart entity, NKart contains the neural network that controls the kart.)
 
 
+![image](https://user-images.githubusercontent.com/86021222/152409423-2bbcf351-ba41-4d91-a9ba-762e1519f2b3.png)
 
-![MarioKart](https://user-images.githubusercontent.com/86021222/127756541-5ccb3510-516f-4c66-83ea-259e1701dc91.png)
