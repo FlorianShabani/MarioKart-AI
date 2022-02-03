@@ -17,7 +17,7 @@ public class TrainKarts extends ManagerA {
 	double mutationRate = 0.15;
 	String map = "yoshi";
 	//Individual karts. (Each will create a new thread when training)
-	String name[] = new String[] { "Mario", "Luigi", "Yoshi", "Bowser"};
+	String name[] = new String[] { "Mario"};
 	//File load/save location on desktop. (type only name) 
 	String loc = "MarioKartMNNF";
 
