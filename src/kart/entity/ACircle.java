@@ -34,16 +34,16 @@ public class ACircle implements Entity {
 	public boolean isInside(int x, int y) {
 		if ((x > this.x) && (x < this.x + width) && (y > this.y) && (y < this.y + height)) {
 			if(rot == 1) {
-				if((((x - this.x - width) * (x - this.x - width) / width * width )
-						+ ((y - this.y - height) * (y - this.y - height) / height * height ) > 1))
+				if((((x - this.x) * (x - this.x) / (width * width) )
+						+ ((y - this.y ) * (y - this.y) / (height * height)) > 1))
 				return true;
 			}else if(rot == 2) {
-				if((((x - this.x) * (x - this.x) / width * width)
-						+ ((y - this.y - height) * (y - this.y - height) / height * height) > 1))
+				if((((x - this.x) * (x - this.x) / (width * width))
+						+ ((height - y + this.y) * (height - y + this.y) / (height * height)) > 1))
 				return true;
 			}else if(rot == 3) {
-				if(((x - this.x) * (x - this.x) / (width * width))
-						+ ((y - this.y) * (y - this.y) / (height * height)) > 1)
+				if((((x - this.x) * (x - this.x) / (width * width))
+						+ ((y - this.y ) * (y - this.y) / (height * height)) > 1))
 				return true;
 			}else if(rot == 4) {
 				if((((x - this.x - width) * (x - this.x - width) / width * width)

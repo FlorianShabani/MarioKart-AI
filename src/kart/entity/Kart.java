@@ -12,26 +12,30 @@ import javax.imageio.ImageIO;
 public class Kart implements Entity {
 
 	protected int x, y, width = 70, height = 70, velx = 0, vely = 0;
-	public double a = 3.14, velm = 0, acc = 0, speedCap = 4, angleR = 0.05, thrust = 0.6, brakeF = -0.4, frictC = 0.015;
+	public double a = 3.14, velm = 0, acc = 0, speedCap = 4, angleR = 0.05, thrust = 0.5, brakeF = -1, frictC = 0.010;
 
-	protected BufferedImage img;
+	protected static BufferedImage img;
 
 	public Kart() {
 		// Check Starting Position
-		this.x = 5500;
-		this.y = 10000;
-
-		try {
-			BufferedImage image = ImageIO.read(getClass().getResource("/MarioK.png"));
-			img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-			Graphics2D g2d = img.createGraphics();
-			g2d.drawImage(image, 0, 0, width, height, null);
-			g2d.dispose();
-		} catch (IOException e) {
-		}
+		render();
 	}
 
-	public void tick() {
+	public Kart(boolean loadGraphics) {
+		if(loadGraphics) render();
+	}
+
+	public void render() {
+		try {
+			BufferedImage image = ImageIO.read(getClass().getResource("/MarioK.png"));
+			img = new BufferedImage(width / 3, height / 3, BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g2d = img.createGraphics();
+			g2d.drawImage(image, 0, 0, width / 3, height / 3, null);
+			g2d.dispose();
+		} catch (IOException e) {}
+	}
+
+	protected void tick() {
 		velm += acc;
 		if (velm < 0)
 			velm = 0;
@@ -43,6 +47,7 @@ public class Kart implements Entity {
 		x += velx;
 		y += vely;
 		acc = 0;
+		applyFriction();
 	}
 
 	public void applyF(double f) {
@@ -62,7 +67,7 @@ public class Kart implements Entity {
 	}
 
 	public void applyFriction() {
-		this.applyF(-velm * frictC - 0.02);
+		this.applyF(-velm * frictC - 0.015);
 	}
 
 	public void steerR() {
@@ -75,7 +80,8 @@ public class Kart implements Entity {
 
 	@Override
 	public boolean isTouching(Entity e) {
-		return false;
+		return (e.isInside(x, y) || e.isInside(x + width, y) || e.isInside(x, y + height)
+				|| e.isInside(x + width, y + height));
 	}
 
 	@Override
@@ -92,7 +98,7 @@ public class Kart implements Entity {
 		AffineTransform at = g.getTransform();
 		g.setColor(Color.red);
 		g.rotate(a + Math.PI / 2, x + width / 2, y + height / 2);
-		g.drawImage(img, x, y, null);
+		g.drawImage(img, x, y, width, height, null);
 		g.setTransform(at);
 	}
 
@@ -138,7 +144,6 @@ public class Kart implements Entity {
 
 	@Override
 	public int getRot() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

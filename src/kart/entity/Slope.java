@@ -13,7 +13,7 @@ public class Slope implements Entity {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.fheight = 300;
+		this.fheight = 30;
 		angle = Math.atan(height / (double) (width));
 	}
 
@@ -27,8 +27,8 @@ public class Slope implements Entity {
 		if (x < this.x || x > this.x + width)
 			return false;
 		
-		int dx = this.x - x;
-		int iy = (int) Math.tan(angle) * dx;
+		int dx = x - this.x;
+		int iy = (int) Math.tan(angle) * dx + this.y;
 		int fy = iy + fheight;
 
 		if (y > iy && y < fy)

@@ -2,133 +2,142 @@ package kart.main;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import kart.entity.ACircle;
-import kart.entity.Block;
-import kart.entity.Circle;
+import kart.entity.CheckPoint;
 import kart.entity.Entity;
-import kart.entity.Slope;
+import kart.entity.Kart;
 
 public class Map {
 
 	ArrayList<Entity> entities = new ArrayList<Entity>();
-	Point[] checkPoint;
+	ArrayList<CheckPoint> checkPoints = new ArrayList<CheckPoint>();
 
-	public double zoom = 0.5;
+	public double zoom = 0.3;
+	public int WIDTH, HEIGHT;
 
-	private BufferedImage image;
+	private static BufferedImage image;
+	private static BufferedImage borderImage;
 
-	public Map() {
+	public static final int scale = 14;
+
+	public int WWidth, WHeight;// Window width and height
+
+	public Map(int WWidth, int WHeight) {
 		/*
 		 * entities.add(new Block(0, -500, 5000, 300)); entities.add(new Block(0, 400,
 		 * 4500, 300)); entities.add(new Block(5000, -500, 300, 10000));
 		 * entities.add(new Block(4200, 700, 300, 10000));
 		 */
 
+		this.WWidth = WWidth;
+		this.WHeight = WHeight;
+
 		try {
 			image = ImageIO.read(getClass().getResource("/yoshiMap.png"));
+			BufferedImage borderImageO = ImageIO.read(getClass().getResource("/yoshiMapBorder.png"));
+			borderImage = new BufferedImage(borderImageO.getWidth() * scale, borderImageO.getHeight() * scale,
+					BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g = (Graphics2D) borderImage.createGraphics();
+			g.drawImage(borderImageO, 0, 0, borderImageO.getWidth() * scale, borderImageO.getHeight() * scale, null);
+			WIDTH = borderImage.getWidth();
+			HEIGHT = borderImage.getHeight();
 		} catch (IOException e) {
+			System.out.println("Didn load map");
 		}
 
-		entities.add(new Circle(2440, 3450, 1250, 1310));
 		/*
 		 * entities.add(new Block(2480, 3940, 1180, 190)); entities.add(new Block(2540,
 		 * 2740, 980, 190)); entities.add(new ACircle(3410, 2380, 270, 410, 3));
 		 */
-		/*
-		 * entities.add(new Block(3680, 1780, 80, 870)); entities.add(new Block(3140,
-		 * 1650, 140, 600)); entities.add(new Block(2480, 4660, 820, 180));
-		 * entities.add(new ACircle(1280, 2210, 1570, 1170, 1)); entities.add(new
-		 * ACircle(1280, 3480, 1360, 1200, 4)); entities.add(new Block(1220, 3260, 80,
-		 * 450)); entities.add(new Circle(3240, 4780, 220, 240)); entities.add(new
-		 * Slope(3280, 4680, -150, 730)); entities.add(new Slope(3120, 5420, -900,
-		 * 680)); entities.add(new Slope(3780, 4360, -360, 1700)); entities.add(new
-		 * Slope(3420, 6060, -720, 520)); entities.add(new Slope(3720, 6340, -640,
-		 * 480)); entities.add(new Slope(3720, 6330, 1340, 1440)); entities.add(new
-		 * Circle(2980, 6790, 680, 710)); entities.add(new ACircle(2130, 6380, 170,
-		 * 1080, 1)); entities.add(new ACircle(2160, 6830, 960, 840, 4));
-		 * entities.add(new Block(2700, 7570, 480, 100)); entities.add(new Slope(3700,
-		 * 7170, -540, 410)); entities.add(new Slope(3700, 7180, 560, 630));
-		 * entities.add(new Slope(4260, 7810, -1000, 840)); entities.add(new Block(3080,
-		 * 8680, 180, 1230)); entities.add(new Circle(4250, 7950, 170, 280));
-		 * entities.add(new Slope(5020, 7990, -1260, 1210)); entities.add(new
-		 * Circle(4980, 8000, 160, 320)); entities.add(new ACircle(3230, 9630, 1960,
-		 * -10, 2)); entities.add(new Circle(4010, 9460, 490, 520)); entities.add(new
-		 * Block(4000, 9580, 2560, 170)); entities.add(new ACircle(3280, 9680, 1600,
-		 * 750, 4)); entities.add(new Block(3780, 10310, 2900, 110)); entities.add(new
-		 * ACircle(3360, 4130, 380, 590, 2)); entities.add(new Circle(6480, 9270, 760,
-		 * 990)); entities.add(new ACircle(6440, 9370, 900, 940, 3)); entities.add(new
-		 * Block(7300, 9020, 100, 840)); entities.add(new Slope(6980, 8260, 400, 610));
-		 * entities.add(new Slope(6980, 8280, 1920, -1760)); entities.add(new
-		 * Slope(6400, 7940, 2020, -1860)); entities.add(new Slope(6180, 8120, 570,
-		 * 880)); entities.add(new ACircle(6340, 8160, 3090, -1170, 4));
-		 * entities.add(new Block(6260, 7960, 160, 640)); entities.add(new Circle(6980,
-		 * 8410, 160, 270)); entities.add(new Circle(8320, 6190, 380, 440));
-		 * entities.add(new Slope(8300, 5950, -1080, 410)); entities.add(new Block(8900,
-		 * 5940, 190, 860)); entities.add(new ACircle(8340, 5580, 590, 620, 2));
-		 * entities.add(new Block(8200, 5400, 340, 200)); entities.add(new Slope(8200,
-		 * 5310, -980, 290)); entities.add(new Slope(7220, 5600, -1980, -500));
-		 * entities.add(new Slope(7240, 6350, -2620, -770)); entities.add(new
-		 * Circle(5240, 5250, 200, 280)); entities.add(new ACircle(5120, 4310, 1260,
-		 * 830, 3)); entities.add(new Block(6380, 4020, 90, 580)); entities.add(new
-		 * ACircle(4750, 5210, 410, 530, 4)); entities.add(new ACircle(4740, 4780, 340,
-		 * 540, 1)); entities.add(new Slope(4740, 4540, 890, -160)); entities.add(new
-		 * Circle(5360, 4140, 1060, 1190)); entities.add(new Block(5500, 3180, 1050,
-		 * -1430)); entities.add(new Slope(6060, 3270, 430, 600)); entities.add(new
-		 * Block(5540, 3270, 100, 480)); entities.add(new Slope(5880, 2690, -300, 450));
-		 * entities.add(new Slope(6070, 3270, 310, -600)); entities.add(new Block(6230,
-		 * 2590, 140, 450)); entities.add(new ACircle(5510, 2070, 770, 780, 2));
-		 * entities.add(new Circle(5650, 2780, 540, 520)); entities.add(new Slope(5600,
-		 * 2520, -580, 130)); entities.add(new Slope(5100, 2640, -480, -260));
-		 * entities.add(new Block(4450, 1760, 190, 920)); entities.add(new Block(5080,
-		 * 1600, 130, 560)); entities.add(new Slope(5100, 1870, 660, -80));
-		 * entities.add(new Circle(4160, 1860, 960, 740)); entities.add(new
-		 * ACircle(3240, 1070, 1060, 850, 1)); entities.add(new ACircle(4060, 1060,
-		 * 1080, 850, 2));
-		 */
-
-
-
 
 		/*
 		 * for(int i = 0; i < 1000; i++) { entities.add(new Block((int)(Math.random() *
 		 * 10000), (int)(Math.random() * 10000), 500, 500)); }
 		 */
+		loadCheckPoints();
+	}
+
+	public Map(int WWidth, int WHeight, String mapName) {
+
+		this.WWidth = WWidth;
+		this.WHeight = WHeight;
+
+		try {
+			image = ImageIO.read(getClass().getResource("/" + mapName + "Map" + ".png"));
+
+			BufferedImage borderImageO = ImageIO.read(getClass().getResource("/" + mapName + "MapBorder" + ".png"));
+			borderImage = new BufferedImage(borderImageO.getWidth() * scale, borderImageO.getHeight() * scale,
+					BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g = (Graphics2D) borderImage.createGraphics();
+			g.drawImage(borderImageO, 0, 0, borderImageO.getWidth() * scale, borderImageO.getHeight() * scale, null);
+
+			WIDTH = borderImage.getWidth();
+			HEIGHT = borderImage.getHeight();
+
+		} catch (IOException e) {
+			System.out.println("Didn load map");
+		}
+		loadCheckPoints();
+
+	}
+
+	public Map(int WWidth, int WHeight, String mapName, boolean loadGraphics) {
+
+		this.WWidth = WWidth;
+		this.WHeight = WHeight;
+
+		if (borderImage == null) {
+			try {
+				if (loadGraphics) {
+					image = ImageIO.read(getClass().getResource("/" + mapName + "Map" + ".png"));
+				}
+
+				BufferedImage borderImageO = ImageIO.read(getClass().getResource("/" + mapName + "MapBorder" + ".png"));
+				borderImage = new BufferedImage(borderImageO.getWidth() * scale, borderImageO.getHeight() * scale,
+						BufferedImage.TYPE_INT_ARGB);
+				Graphics2D g = (Graphics2D) borderImage.createGraphics();
+				g.drawImage(borderImageO, 0, 0, borderImageO.getWidth() * scale, borderImageO.getHeight() * scale,
+						null);
+
+				WIDTH = borderImage.getWidth();
+				HEIGHT = borderImage.getHeight();
+
+			} catch (IOException e) {
+				System.out.println("Didn load map");
+			}
+		}
+		loadCheckPoints();
 	}
 
 	public Map(String loc) {
-
+		loadCheckPoints();
 	}
-
-	public static int scale = 10;
 
 	public void draw(Graphics gd, ArrayList<NKart> karts, int camI) {
 		Graphics2D g = (Graphics2D) gd;
 
 		AffineTransform at = g.getTransform();
-		
-		g.translate(Main.Width / 2, Main.Height / 2);
+
+		g.translate(WWidth / 2, WHeight / 2);
 		g.scale(zoom, zoom);
 		g.translate((int) (-karts.get(camI).getX()), (int) (-karts.get(camI).getY()));
 
 		AffineTransform atS = g.getTransform();
-
 		g.scale(scale, scale);
 		g.drawImage(image, 0, 0, null);
 
 		g.setTransform(atS);
-		
-		for (Entity e : entities) 
-			e.draw(g);
-		 
+		g.drawImage(borderImage, 0, 0, null);
 
+		for (Entity e : entities)
+			e.draw(g);
 
 		for (NKart k : karts)
 			k.draw(g);
@@ -136,15 +145,114 @@ public class Map {
 		g.setTransform(at);
 	}
 
+	public void draw(Graphics gd, NKart[] karts, int camI) {
+		Graphics2D g = (Graphics2D) gd;
+
+		AffineTransform at = g.getTransform();
+
+		g.translate(WWidth / 2, WHeight / 2);
+		g.scale(zoom, zoom);
+		g.translate((int) (-karts[camI].getX()), (int) (-karts[camI].getY()));
+
+		AffineTransform atS = g.getTransform();
+		g.scale(scale, scale);
+		g.drawImage(image, 0, 0, null);
+
+		g.setTransform(atS);
+		g.drawImage(borderImage, 0, 0, null);
+
+		for (Entity e : entities)
+			e.draw(g);
+
+		for (Kart k : karts)
+			k.draw(g);
+
+		g.setTransform(at);
+	}
+
+	public void loadCheckPoints() {
+		checkPoints.add(new CheckPoint(7364, 13692, 126, 756));
+		checkPoints.add(new CheckPoint(5586, 13678, 112, 728));
+		checkPoints.add(new CheckPoint(4606, 12516, 812, 154));
+		checkPoints.add(new CheckPoint(6174, 11102, 126, 798));
+		checkPoints.add(new CheckPoint(5138, 9324, 126, 700));
+		checkPoints.add(new CheckPoint(3570, 8582, 140, 700));
+		checkPoints.add(new CheckPoint(4690, 6524, 448, 84));
+		checkPoints.add(new CheckPoint(3388, 5796, 154, 728));
+		checkPoints.add(new CheckPoint(3388, 3220, 98, 588));
+		checkPoints.add(new CheckPoint(5768, 1582, 112, 504));
+		checkPoints.add(new CheckPoint(7070, 3080, 126, 518));
+		checkPoints.add(new CheckPoint(7910, 4788, 518, 140));
+		checkPoints.add(new CheckPoint(7266, 6692, 98, 462));
+		checkPoints.add(new CheckPoint(7210, 7546, 98, 490));
+		checkPoints.add(new CheckPoint(10080, 8316, 98, 504));
+		checkPoints.add(new CheckPoint(11662, 7868, 126, 504));
+		checkPoints.add(new CheckPoint(11844, 8904, 112, 644));
+		checkPoints.add(new CheckPoint(9618, 10920, 112, 742));
+		checkPoints.add(new CheckPoint(9604, 12740, 574, 168));
+
+		entities.add(new CheckPoint(7364, 13692, 126, 756));
+		entities.add(new CheckPoint(5586, 13678, 112, 728));
+		entities.add(new CheckPoint(4606, 12516, 812, 154));
+		entities.add(new CheckPoint(6174, 11102, 126, 798));
+		entities.add(new CheckPoint(5138, 9324, 126, 700));
+		entities.add(new CheckPoint(3570, 8582, 140, 700));
+		entities.add(new CheckPoint(4690, 6524, 448, 84));
+		entities.add(new CheckPoint(3388, 5796, 154, 728));
+		entities.add(new CheckPoint(3388, 3220, 98, 588));
+		entities.add(new CheckPoint(5768, 1582, 112, 504));
+		entities.add(new CheckPoint(7070, 3080, 126, 518));
+		entities.add(new CheckPoint(7910, 4788, 518, 140));
+		entities.add(new CheckPoint(7266, 6692, 98, 462));
+		entities.add(new CheckPoint(7210, 7546, 98, 490));
+		entities.add(new CheckPoint(10080, 8316, 98, 504));
+		entities.add(new CheckPoint(11662, 7868, 126, 504));
+		entities.add(new CheckPoint(11844, 8904, 112, 644));
+		entities.add(new CheckPoint(9618, 10920, 112, 742));
+		entities.add(new CheckPoint(9604, 12740, 574, 168));
+
+	}
+
+	public void tick(NKart[] karts, int[] kartsCheckPoints) {
+		for (int i = 0; i < karts.length; i++) {
+			NKart k = karts[i];
+			if (kartsCheckPoints[i] == checkPoints.size() - 1) {
+				// Final CheckPoint reached/
+				if (k.isTouching(checkPoints.get(0))) {
+					kartsCheckPoints[i] = checkPoints.size();
+				}
+			} else if (kartsCheckPoints[i] < checkPoints.size() - 1
+					&& k.isTouching(checkPoints.get(kartsCheckPoints[i] + 1))) {
+				kartsCheckPoints[i]++;
+			}
+		}
+	}
+
 	public void tick() {
+	}
+
+	public boolean isInside(int x, int y) {
+		if (x < 0)
+			x = 0;
+		else if (x >= borderImage.getWidth())
+			x = borderImage.getWidth() - 1;
+		if (y < 0)
+			y = 0;
+		else if (y >= borderImage.getHeight())
+			y = borderImage.getHeight() - 1;
+		return (borderImage.getRGB(x, y) >> 24 & 0xFF) != 0;
 	}
 
 	public ArrayList<Entity> getEntities() {
 		return entities;
 	}
 
-	public void saveMap(String loc) {
-
+	public int nCheckPoints() {
+		return checkPoints.size();
 	}
 
+	public int[] getStartingPosition() {
+		return new int[] { checkPoints.get(0).getX() + checkPoints.get(0).getWidth() / 2,
+				checkPoints.get(0).getY() + checkPoints.get(0).getHeight() / 2 };
+	}
 }

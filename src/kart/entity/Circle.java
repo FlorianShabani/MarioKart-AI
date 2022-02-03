@@ -21,8 +21,8 @@ public class Circle implements Entity {
 
 	@Override
 	public boolean isInside(int x, int y) {
-		if (((x - this.x - (width/2)) * (x - this.x - (width/2)) / (double)(width * width / 4)) + 
-				((y - this.y - (height/2)) * (y - this.y - (height/2)) / (double)(height * height) / 4) < 1.0) {
+		if (((x - this.x) * (x - this.x) / (width * width / 4.0)) + 
+				((y - this.y) * (y - this.y) / (height * height / 4.0)) < 1.0) {
 			return true;
 		}
 		return false;
@@ -31,7 +31,7 @@ public class Circle implements Entity {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.blue);
-		g.fillOval(x - width / 2, y - height / 2, width, height);
+		g.fillOval(x - width/2, y - height/2, width, height);
 	}
 
 	public int getY() {
