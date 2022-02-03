@@ -1,6 +1,5 @@
 
-MarioKartMNN(!PROJECT INCOMPLETE!)
-
+MarioKartMNN
 
 (The code was meant for learning and for fun, so its not very commented.)
 
