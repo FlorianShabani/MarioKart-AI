@@ -22,4 +22,3 @@ All the classes which are implemented from the entity class are used to make the
 
 
 ![MarioKart](https://user-images.githubusercontent.com/86021222/127756541-5ccb3510-516f-4c66-83ea-259e1701dc91.png)
-![Mapper](https://user-images.githubusercontent.com/86021222/127756549-194fd6af-4208-473f-a5fa-bdeebb9223cd.png)
