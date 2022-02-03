@@ -14,7 +14,6 @@ The neural network outputs are : Speed up, do Nothing, Slow down, and Turn right
 
 To see the results, download the jar (or export to jar the src files) and place the MarioKartMNNF in your desktop.
 
-Karts in action:
 ![Animation2](https://user-images.githubusercontent.com/86021222/152413801-7f88d220-f123-4b84-97f1-4e12577c022b.gif)
 
 Visualization of the Karts vision:
