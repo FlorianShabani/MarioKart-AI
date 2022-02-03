@@ -16,7 +16,8 @@ To see the results, download the jar (or export to jar the src files) and place 
 
 ![Animation2](https://user-images.githubusercontent.com/86021222/152413801-7f88d220-f123-4b84-97f1-4e12577c022b.gif)
 
-Visualization of the Karts vision:\n
+Visualization of the Karts vision:
+
 ![kart2](https://user-images.githubusercontent.com/86021222/152414152-26050265-4f99-4306-a2f4-6537919ce212.png)
 
 
