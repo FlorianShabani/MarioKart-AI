@@ -12,7 +12,7 @@ The agents inform themselvesc by multiple rays in front of them which indicate t
 
 The neural network outputs are : Speed up, do Nothing, Slow down, and Turn right, Turn Left or do Nothing. (Use boost - to be implemented)
 
-To see the results, download the jar (or export to jar the src files) and place the MarioKartMNNF in your desktop.
+To see the results, download the jar (or run TestKart) and place the MarioKartMNNF in your desktop.
 
 ![Animation2](https://user-images.githubusercontent.com/86021222/152413801-7f88d220-f123-4b84-97f1-4e12577c022b.gif)
 
