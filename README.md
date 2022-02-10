@@ -1,7 +1,7 @@
 
 MarioKartMNN
 
-(The code was meant for learning and for fun, so its not very commented.)
+(The code was meant for learning and for fun, so its not very well commented.)
 
 This is a Mario Kart 2D recreation with agents controlled by a Neural Network. (The Neural Network source code is in the Neural Network repository)
 (The setup is the code used by most of my programs as a library to start my canvas and basic draw() and tick() (or Update) loops. All the main classes implement the Manger class and then start the Window in the main function)
