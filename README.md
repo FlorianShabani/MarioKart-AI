@@ -5,7 +5,7 @@ MarioKartMNN
 
 This is a Mario Kart 2D recreation with agents controlled by a Neural Network. (The Neural Network source code is in the Neural Network folder)
 
-The training is done by "genetically" modifying the neural network,with agents who score higher having a more favorable chance of passing their Neural Network "genes".
+The training is done by "genetically" modifying the neural network, with agents who score higher having a more favorable chance of passing their Neural Network "genes".
 
 The agents inform themselvesc by multiple rays in front of them which indicate the distance of nearby walls(in the ray's direction) and also the agents speed is inputed into its first layer of the NN.
 
